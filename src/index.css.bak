@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+
+html, body, #root {
+  height: 100%;
+}
+
+/* Make the site background pure black for a professional, human-made look */
+html, body {
+  background-color: #000000; /* full black */
+  color: #ffffff;
+}
+
+/* keep a legacy utility (black background) for components that explicitly request it */
+.bg-ecell {
+  background-color: #000000;
+}
+
+/* Smooth scroll behavior for native anchor scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+

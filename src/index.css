@@ -1,0 +1,147 @@
+/* Fonts are loaded via <link> in index.html for better build/tooling behavior */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Primary color derived from uploaded image */
+  --ecell-primary: #163f4d;
+  --text-default: #0b1220;
+  --muted: #6b7280;
+  color-scheme: light;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+/* Light site background */
+html, body {
+  background: #ffffff;
+  color: var(--text-default);
+}
+
+/* Global typography */
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Headings style to match uploaded image: color = nav color, condensed/uppercase */
+h1, h2, h3, h4 {
+  font-family: 'Oswald', 'Segoe UI', system-ui, Arial, sans-serif;
+  color: var(--ecell-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Slightly heavier weight for the main page title */
+h1 { font-weight: 700; }
+h2 { font-weight: 600; }
+
+/* Links default */
+a { color: var(--ecell-primary); }
+
+
+/* Navbar background helper */
+.nav-bg {
+  /* Use uploaded navbar image (place the file at /public/nav-bg.jpg).
+     The semi-opaque white color + backdrop blur helps keep black nav text readable on top of the image. */
+  background-image: url('/nav-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgba(255,255,255,0.78);
+  background-blend-mode: lighten;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+/* Utility to apply the Oswald font at any element */
+.font-oswald { font-family: 'Oswald', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif; }
+
+/* Small nav-specific tweaks to ensure good legibility */
+.nav-surface { color: #000000; }
+
+/* Link hover using primary color */
+.link-ecell:hover { color: var(--ecell-primary); }
+
+/* Project-specific semantic utilities using the ecell primary color */
+.text-ecell { color: var(--ecell-primary) !important; }
+.text-ecell-muted { color: rgba(22,63,77,0.65) !important; }
+.bg-ecell { background-color: var(--ecell-primary) !important; }
+.bg-ecell-20 { background-color: rgba(22,63,77,0.20) !important; }
+.bg-ecell-40 { background-color: rgba(22,63,77,0.40) !important; }
+.shadow-ecell-30 { box-shadow: 0 10px 30px rgba(22,63,77,0.30) !important; }
+.border-ecell { border-color: var(--ecell-primary) !important; }
+.hover\:bg-ecell:hover { background-color: var(--ecell-primary) !important; }
+.hover\:text-ecell:hover { color: var(--ecell-primary) !important; }
+
+/* Replace any small orange radial accents previously used */
+.radial-ecell-weak { background-image: radial-gradient(800px 400px at 20% -10%, rgba(22,63,77,0.12), transparent 60%); background-size: 160% 100%; }
+
+/* E-Cell accent / section background (subtle band using primary) */
+.bg-ecell {
+  background: linear-gradient(180deg, rgba(22,63,77,0.98), rgba(22,63,77,0.95));
+}
+
+/* Light card look */
+.card-light {
+  background-color: #ffffff;
+  border: 1px solid rgba(11,18,32,0.06);
+  box-shadow: 0 6px 18px rgba(11,18,32,0.06);
+}
+
+/* Muted overlay for depth on white */
+.bg-overlay {
+  background: linear-gradient(180deg, rgba(11,18,32,0.02) 0%, rgba(11,18,32,0.01) 100%);
+}
+
+/* Decorative gradients using ecell primary color */
+.gradient-ecell-line {
+  background: linear-gradient(to right, transparent, rgba(22,63,77,0.60), transparent);
+}
+.gradient-ecell-decor {
+  background: linear-gradient(to right, rgba(22,63,77,0.40), rgba(255,255,255,0.80), rgba(22,63,77,0.40));
+}
+.gradient-ecell-avatar {
+  background: linear-gradient(to bottom right, rgba(22,63,77,0.95), rgba(22,63,77,0.85));
+}
+
+/* Smooth scroll behavior for native anchor scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Reveal staggered children: basic CSS-based stagger when parent gets '.in' */
+.reveal-children > * {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 560ms cubic-bezier(.2,.9,.25,1), transform 560ms cubic-bezier(.2,.9,.25,1);
+  will-change: opacity, transform;
+}
+.reveal-children.in > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* stagger delays for up to 12 direct children */
+.reveal-children.in > *:nth-child(1) { transition-delay: 0.04s }
+.reveal-children.in > *:nth-child(2) { transition-delay: 0.08s }
+.reveal-children.in > *:nth-child(3) { transition-delay: 0.12s }
+.reveal-children.in > *:nth-child(4) { transition-delay: 0.16s }
+.reveal-children.in > *:nth-child(5) { transition-delay: 0.20s }
+.reveal-children.in > *:nth-child(6) { transition-delay: 0.24s }
+.reveal-children.in > *:nth-child(7) { transition-delay: 0.28s }
+.reveal-children.in > *:nth-child(8) { transition-delay: 0.32s }
+.reveal-children.in > *:nth-child(9) { transition-delay: 0.36s }
+.reveal-children.in > *:nth-child(10) { transition-delay: 0.40s }
+.reveal-children.in > *:nth-child(11) { transition-delay: 0.44s }
+.reveal-children.in > *:nth-child(12) { transition-delay: 0.48s }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-children > * { transition: none !important; transform: none !important; opacity: 1 !important }
+}
